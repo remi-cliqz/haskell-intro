@@ -6,9 +6,9 @@
 # Haskell - Where, when, who?
 
 - Named after *Haskell Curry* (logician)
-- 1987: >= 12 non-strict, purely functional programming languages existed
-- Strong consensus that a committee should be formed to define an open standard for such languages.
-- Purpose: Consolidate the existing FPL into a common one that would serve as a basis for future research in functional-language design.
+- 1987: *>= 12 non-strict*, purely functional programming languages existed
+- 1987 bis: Committee should be formed to define an open standard
+- Purpose: Consolidate the existing FPL into a common one, basis for future research
 - 1990: First version of Haskell
 
 -------------------------------------------------------------------------------
@@ -27,9 +27,11 @@
 # So, why Haskell?
 
 - Strong type safety, less errors
+- Purity, less errors...
 - Refactoring is a no-brainer
-- Mature language
-- Type system actually helps you reason about your program
+- Easy parallelization
+- Mature language, mature ecosystem
+- Type system actually helps you reason about your program (TDD)
 
 -------------------------------------------------------------------------------
 
@@ -64,6 +66,31 @@
 
 -------------------------------------------------------------------------------
 
+Sure, we can have side effects...
+
+```haskell
+main = putStrLn "Hello World"
+```
+
+-------------------------------------------------------------------------------
+
+```haskell
+main :: IO ()
+main = putStrLn "Hello World"
+```
+
+Could be read as:
+
+```c
+void main() {
+    printf("Hello World\n");
+}
+```
+
+But much better!
+
+-------------------------------------------------------------------------------
+
 ## Static strong typing
 
 - All types are known at compile-type
@@ -79,6 +106,11 @@
 ```
 
 ...But you can specify them, mostly to check your understanding of the program!
+
+-------------------------------------------------------------------------------
+
+```haskell
+```
 
 ### Consequences
 
