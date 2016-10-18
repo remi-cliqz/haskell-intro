@@ -101,6 +101,31 @@ for ( int i = 0; i < lst.length; i++ ) {
 sum (map (3*) lst)
 ```
 
+------------------------------------------------------------------------------
+
+## Expressions, not Executions
+
+### Java
+```java
+int acc = 0;
+for ( int i = 0; i < lst.length; i++ ) {
+  acc = acc + 3 * lst[i];
+}
+```
+
+
+### Haskell
+
+```haskell
+sum (map (3*) lst)
+```
+
+they are *really* not some fancy function names
+```haskell
+sum [] = 0
+sum x:xs = x + sum xs
+```
+
 -------------------------------------------------------------------------------
 
 ![](./haskell-xkcd.png)
