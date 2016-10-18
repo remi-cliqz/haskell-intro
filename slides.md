@@ -36,25 +36,29 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 -------------------------------------------------------------------------------
 
-## Pure and functional?
+## Pure and Functional?
 
 - *Functions* (mathematical, not procedures) are first-class, that is, functions are values which can be used in exactly the same ways as any other sort of value.
 
 - The meaning of Haskell programs is centered around **evaluating expressions** rather than **executing instructions**.
 
-- Data is immutable
+- No mutation! Everything (variables, data structures…) is immutable.
+
+- Expressions never have “side effects” (like updating global variables or printing to the screen).
+
+- Calling the same function with the same arguments results in the same output every time. Programs are deterministic.
 
 -----------------------------------------------------------------------------------
 
-![](./composition.png)
+*Guaranteed  not to launch rockets*
 
-*Does not launch rockets*
+![](./composition.png)
 
 ---------------------------------------------------------------------------------
 
 ![](./composition.png)
 
-- Boxes are replacable
+- Boxes are replaceable
 - Split boxes as much as you want (a.k.a partial application)
 - Polymorphic functions 
 
@@ -74,11 +78,28 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 . . .
 
-### Consequences
+### Top haskell question ever...
 
-- No side-effect!
-- No loop?
-- No mutable data structures.
+Where is my `loop`?
+
+------------------------------------------------------------------------------
+
+## Expressions, not Executions
+
+### Java
+```java
+int acc = 0;
+for ( int i = 0; i < lst.length; i++ ) {
+  acc = acc + 3 * lst[i];
+}
+```
+
+
+### Haskell
+
+```haskell
+sum (map (3*) lst)
+```
 
 -------------------------------------------------------------------------------
 
@@ -99,15 +120,17 @@ Let's read the content of a file, and map each word to its length:
 
 . . .
 
-```sh
+```bash
+#!/bin/bash
+
 Input = "foo bar baz"
 ```
 
-```sh
+```bash
 Output = "3 3 3"
 ```
 
-```sh
+```bash
 $ echo "foo bar baz" | hsMap
 3 3 3
 ```
