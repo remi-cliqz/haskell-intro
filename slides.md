@@ -1,4 +1,4 @@
-% Haskell
+% Haskell: Avoid success at all cost
 % Dhananjay and Rémi
 % October 19, 2016
 
@@ -42,11 +42,19 @@
 
 - Data is immutable
 - Everything is a *mathematical* function
+    - First-class
+    - Polymorphic
+    - Partial application possible
+    - Custom operators
 
 ```haskell
--- have some code
+> :t (+)
+(+) :: Num a => a -> a -> a -- Function with two arguments
+> :t (1 +)
+(1 +) :: Num a => a -> a    -- Expect one more argument
+> :t 42
+42 :: Num t => t            -- Function with no argument!
 ```
-
 
 ### Consequences
 
@@ -142,6 +150,8 @@ main = interact go
 But what's the type of these effectful functions?
 
 ```haskell
+interact :: (String -> String) -> IO ()
+
 main :: IO ()
 main = putStrLn "Hello World"
 ```
@@ -168,16 +178,37 @@ But with completly different semantics!
 
 Immutable data structure?
 
+-------------------------------------------------------------------------------
+
+Immutable data structure?
+
 ![](./immutable-tree.png)
 
 -------------------------------------------------------------------------------
+
+- Interesting fact: Any impure data-structure can be approximated in a pure language with an added $log(n)$ factor.
+
+- Hint: Simulate random access/mutation with a tree-like data-structure
+
+- *Pippenger [1996]*
+
+-------------------------------------------------------------------------------
+
+- But... Some of them can be solved with same asymptotic complexity using laziness
+
+- *Bird, Jones and De Moore [1997]*
+
+- Reference for pure, lazy data-structures: *Chris Okasaki's "Purely Functional Data Structures" [1998]*
+
+-------------------------------------------------------------------------------
+
+### Consequences: revisited
 
 At the end, it can even bring benefits!
 
 - Easy to compose (DRY, manage complexity)
 - Easy to test (property-based testing)
 - Easier to understand (small functions, isolate IO)
-
 
 -------------------------------------------------------------------------------
 
@@ -199,8 +230,32 @@ At the end, it can even bring benefits!
 
 -------------------------------------------------------------------------------
 
-```haskell
+Let's implement a simple `len` function:
 
+```haskell
+len (_:xs) = 1 + len xs
+```
+
+And see what compilation tells us:
+
+```
+types.hs:3:1: warning: [-Wmissing-signatures]
+    Top-level binding with no type signature:
+      len :: forall t a. Num a => [t] -> a
+
+types.hs:3:1: warning: [-Wincomplete-patterns]
+    Pattern match(es) are non-exhaustive
+    In an equation for ‘len’: Patterns not matched: []
+```
+
+-------------------------------------------------------------------------------
+
+Let's make GHC happy:
+
+```haskell
+len :: [a] -> Int
+len [] = 0
+len (_:xs) = 1 + len xs
 ```
 
 ### Consequences
@@ -208,6 +263,7 @@ At the end, it can even bring benefits!
 - Less bugs
 - Documentation can be wrong, types cannot (but write both!)
 - Data convertions are explicit
+- Hoogle! (search engine using types)
 
 -------------------------------------------------------------------------------
 
@@ -216,6 +272,7 @@ At the end, it can even bring benefits!
 - Nothing is evaluated unless it's needed
 
 ```haskell
+-- TODO
 take 10 hugeList
 ```
 
