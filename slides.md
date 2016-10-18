@@ -14,28 +14,12 @@
 -------------------------------------------------------------------------------
 
 # What is Haskell
-
+- Haskell is **functional**
 - Haskell is **lazy**
 - Haskell is **pure**
-- Haskell is **functional**
 - Haskell has a (very expressive) **strong, static type system**
 - Haskell is *fast* (enough)
 - Haskell is *multi-purpose*
-
--------------------------------------------------------------------------------
-
-# So, why Haskell?
-
-- Strong type safety, less errors
-- Purity, less errors...
-- Refactoring is a no-brainer
-- Easy parallelization
-- Mature language, mature ecosystem
-- Type system actually helps you reason about your program (TDD)
-
--------------------------------------------------------------------------------
-
-# Haskell and other languages
 
 -------------------------------------------------------------------------------
 
@@ -57,6 +41,11 @@
 
 - Data is immutable
 - Everything is basically a function
+
+```haskell
+-- have some code
+```
+
 
 ### Consequences
 
@@ -208,6 +197,21 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 - Lazyness
 - Purity
+
+-------------------------------------------------------------------------------
+
+# Haskell and other languages
+
+-------------------------------------------------------------------------------
+
+# So, why Haskell?
+
+- Strong type safety, less errors
+- Purity, less errors...
+- Refactoring is a no-brainer
+- Easy parallelization
+- Mature language, mature ecosystem
+- Type system actually helps you reason about your program (TDD)
 
 -------------------------------------------------------------------------------
 
