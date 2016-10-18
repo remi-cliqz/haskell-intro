@@ -3,6 +3,13 @@
 % October 19, 2016
 
 
+
+![](./logo.png)
+
+is **purely functional** , **general purpose**, **lazily** evaluated programming language with a **strong type system**.
+
+-------------------------------------------------------------------------------
+
 # Haskell - Where, when, who?
 
 - Named after *Haskell Curry* (logician)
@@ -13,36 +20,48 @@
 
 -------------------------------------------------------------------------------
 
-![](./logo.png)
-
-is **purely functional** , **general purpose**, **lazily** evaluated programming language with a **strong type system**.
-
--------------------------------------------------------------------------------
-
 # Haskell ecosystem
 
 - Glorious/Glasgow Haskell Compiler (*GHC*)
-- Stack: cli tool to:
+- Stack: cli tool to: 
     - Install GHC for you
     - Install packages
     - Build Haskell projects
     - Test Haskell projects
+    - LTS snapshots for haskell libraries.
     - etc.
 - Stackage/Hackage: central package archive for Haskell.
 - Hoogle: Haskell code search engine
+
 
 -------------------------------------------------------------------------------
 
 ## Pure and functional?
 
+- *Functions* (mathematical, not procedures) are first-class, that is, functions are values which can be used in exactly the same ways as any other sort of value.
+
+- The meaning of Haskell programs is centered around **evaluating expressions** rather than **executing instructions**.
+
 - Data is immutable
-- Everything is a *mathematical* function
-    - First-class
-    - Polymorphic
-    - Partial application possible
-    - Custom operators
+
+-----------------------------------------------------------------------------------
+
+![](./composition.png)
+
+*Does not launch rockets*
+
+---------------------------------------------------------------------------------
+
+![](./composition.png)
+
+- Boxes are replacable
+- Split boxes as much as you want (a.k.a partial application)
+- Polymorphic functions 
+
+--------------------------------------------------------------------------------------
 
 . . .
+
 
 ```haskell
 > :t (+)
