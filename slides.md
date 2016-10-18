@@ -13,14 +13,9 @@
 
 -------------------------------------------------------------------------------
 
-# What is Haskell
+![](./logo.png)
 
-- Haskell is **functional**
-- Haskell is **lazy**
-- Haskell is **pure**
-- Haskell has a (very expressive) **strong, static type system**
-- Haskell is *fast* (enough)
-- Haskell is *multi-purpose*
+is **purely functional** , **general purpose**, **lazily** evaluated programming language with a **strong type system**.
 
 -------------------------------------------------------------------------------
 
