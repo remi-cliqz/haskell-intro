@@ -268,6 +268,8 @@ types.hs:3:1: warning: [-Wincomplete-patterns]
     In an equation for ‘len’: Patterns not matched: []
 ```
 
+Note: This works on any user-defined type too!!
+
 -------------------------------------------------------------------------------
 
 Let's make GHC happy:
@@ -277,6 +279,8 @@ len :: [a] -> Int
 len [] = 0
 len (_:xs) = 1 + len xs
 ```
+
+. . .
 
 ### Consequences
 
