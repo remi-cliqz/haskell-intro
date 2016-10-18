@@ -14,6 +14,7 @@
 -------------------------------------------------------------------------------
 
 # What is Haskell
+
 - Haskell is **functional**
 - Haskell is **lazy**
 - Haskell is **pure**
@@ -40,7 +41,7 @@
 ## Pure and functional?
 
 - Data is immutable
-- Everything is basically a function
+- Everything is a *mathematical* function
 
 ```haskell
 -- have some code
@@ -49,9 +50,14 @@
 
 ### Consequences
 
-- Side effects??
-- No loop
-- No mutable data structures
+- No side-effect!
+- No loop?
+- No mutable data structures.
+
+-------------------------------------------------------------------------------
+
+![](./haskell-xkcd.png)
+
 
 -------------------------------------------------------------------------------
 
@@ -62,6 +68,78 @@ main = putStrLn "Hello World"
 ```
 
 -------------------------------------------------------------------------------
+
+Let's read the content of a file, and map each word to its length:
+
+```sh
+Input = "foo bar baz"
+```
+
+```sh
+Output = "3 3 3"
+```
+
+-------------------------------------------------------------------------------
+
+We need:
+
+```haskell
+words :: String -> [String]
+unwords :: [String] -> String
+length :: String -> Int
+show :: Int -> String
+```
+
+-------------------------------------------------------------------------------
+
+And then let's compose:
+
+```haskell
+interact :: (String -> String) -> ?
+-- 1. Reads stdin
+-- 2. Calls a function on it (String -> String)
+-- 3. Prints on stdout
+
+main = interact (unwords . map (show . length) . words)
+```
+
+where:
+
+```haskell
+(.) :: (b -> c) -> (a -> b) -> a -> c
+```
+
+Remember `f . g` in math class?
+
+-------------------------------------------------------------------------------
+
+And then let's compose:
+
+```haskell
+interact :: (String -> String) -> ?
+-- 1. Reads stdin
+-- 2. Calls a function on it (String -> String)
+-- 3. Prints on stdout
+
+main = interact (unwords . map (show . length) . words)
+```
+
+Same as:
+
+```haskell
+main = interact go
+    where
+        go str =
+            let tokens = words str
+                lengths = map length tokens
+                result = unwords (map show lengths)
+            in result
+```
+
+
+-------------------------------------------------------------------------------
+
+But what's the type of these effectful functions?
 
 ```haskell
 main :: IO ()
@@ -76,7 +154,30 @@ void main() {
 }
 ```
 
-But much better!
+But with completly different semantics!
+
+-------------------------------------------------------------------------------
+
+![](./io-pure.jpg)
+
+-------------------------------------------------------------------------------
+
+![](./io.png)
+
+-------------------------------------------------------------------------------
+
+Immutable data structure?
+
+![](./immutable-tree.png)
+
+-------------------------------------------------------------------------------
+
+At the end, it can even bring benefits!
+
+- Easy to compose (DRY, manage complexity)
+- Easy to test (property-based testing)
+- Easier to understand (small functions, isolate IO)
+
 
 -------------------------------------------------------------------------------
 
@@ -99,6 +200,7 @@ But much better!
 -------------------------------------------------------------------------------
 
 ```haskell
+
 ```
 
 ### Consequences
@@ -113,18 +215,15 @@ But much better!
 
 - Nothing is evaluated unless it's needed
 
+```haskell
+take 10 hugeList
+```
+
 ### Consequences
 
 - More modularity
 - Easier code reuse
-- ?
-
--------------------------------------------------------------------------------
-
-### Let's talk about types
-
-And let's find lot of examples maybe?
-Less boring, and more visual
+- Avoid unneeded computations
 
 -------------------------------------------------------------------------------
 
