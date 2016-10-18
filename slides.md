@@ -292,9 +292,12 @@ len (_:xs) = 1 + len xs
 - Nothing is evaluated unless it's needed
 
 ```haskell
--- TODO
-take 10 hugeList
+-- This is super cheap, even if the list is huge
+take 10 (sort hugeList)
 ```
+It's difficult to reason about complexity.
+
+. . .
 
 ### Consequences
 
