@@ -47,6 +47,8 @@
     - Partial application possible
     - Custom operators
 
+. . .
+
 ```haskell
 > :t (+)
 (+) :: Num a => a -> a -> a -- Function with two arguments
@@ -55,6 +57,8 @@
 > :t 42
 42 :: Num t => t            -- Function with no argument!
 ```
+
+. . .
 
 ### Consequences
 
@@ -79,12 +83,19 @@ main = putStrLn "Hello World"
 
 Let's read the content of a file, and map each word to its length:
 
+. . .
+
 ```sh
 Input = "foo bar baz"
 ```
 
 ```sh
 Output = "3 3 3"
+```
+
+```sh
+$ echo "foo bar baz" | hsMap
+3 3 3
 ```
 
 -------------------------------------------------------------------------------
@@ -107,7 +118,11 @@ interact :: (String -> String) -> ?
 -- 1. Reads stdin
 -- 2. Calls a function on it (String -> String)
 -- 3. Prints on stdout
+```
 
+. . .
+
+```haskell
 main = interact (unwords . map (show . length) . words)
 ```
 
@@ -155,6 +170,8 @@ interact :: (String -> String) -> IO ()
 main :: IO ()
 main = putStrLn "Hello World"
 ```
+
+. . .
 
 Could be read as:
 
@@ -209,6 +226,7 @@ At the end, it can even bring benefits!
 - Easy to compose (DRY, manage complexity)
 - Easy to test (property-based testing)
 - Easier to understand (small functions, isolate IO)
+- Compiler can perform very aggressive optimizations (deforestation, fusion, etc.)
 
 -------------------------------------------------------------------------------
 
@@ -235,6 +253,8 @@ Let's implement a simple `len` function:
 ```haskell
 len (_:xs) = 1 + len xs
 ```
+
+. . .
 
 And see what compilation tells us:
 
@@ -321,38 +341,59 @@ main = mainWith (sierpinski 10)
 0, 1, 1, 2, 3, 5, 8, 13
 
 ```haskell
-fibs :: [Integer]
-fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+fibo :: Integer -> Integer
+fibo 0 = 0
+fibo 1 = 1
+fibo n = fibo (n - 1) + fibo (n - 2)
 ```
 
--------------------------------------------------------------------------------
-
-![Fibonacci](./demos/frame0.png){ width=150px }
+Can we just memoize to avoid repetition?
 
 -------------------------------------------------------------------------------
 
-![Fibonacci](./demos/frame1.png){ width=150px }
+Or maybe we can just use purity and laziness...
+
+```haskell
+fibs :: [Integer]
+fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
+
+-- Just computes what is needed + runtime memoizes for us
+fibo n = fibs !! n
+```
+
 
 -------------------------------------------------------------------------------
 
-![Fibonacci](./demos/frame2.png){ width=150px }
+![Fibonacci](./demos/frame0.png){ width=230 }
 
 -------------------------------------------------------------------------------
 
-![Fibonacci](./demos/frame3.png){ width=150px }
+![Fibonacci](./demos/frame1.png){ width=230 }
 
 -------------------------------------------------------------------------------
 
-![Fibonacci](./demos/frame4.png){ width=150px }
+![Fibonacci](./demos/frame2.png){ width=230 }
 
 -------------------------------------------------------------------------------
 
-![Fibonacci](./demos/frame5.png){ width=150px }
+![Fibonacci](./demos/frame3.png){ width=230 }
 
 -------------------------------------------------------------------------------
+
+![Fibonacci](./demos/frame4.png){ width=230 }
+
+-------------------------------------------------------------------------------
+
+![Fibonacci](./demos/frame5.png){ width=230 }
+
+-------------------------------------------------------------------------------
+
+This showcases:
 
 - Lazyness
 - Purity
+
+This is actually a simple example of a very powerful method to do dynamic programming.
 
 -------------------------------------------------------------------------------
 
@@ -373,6 +414,6 @@ fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
 
 # Resources to learn Haskell
 
--------------------------------------------------------------------------------
+- Learning haskell from first principles
 
-# The working group
+-------------------------------------------------------------------------------
