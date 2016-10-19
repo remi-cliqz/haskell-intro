@@ -38,11 +38,11 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 ## Pure and Functional?
 
-- *Functions* (mathematical, not procedures) are first-class, that is, functions are values which can be used in exactly the same ways as any other sort of value.
+- *Functions* (mathematical, not procedures) are first-class
 
 . . .
 
-- The meaning of Haskell programs is centered around **evaluating expressions** rather than **executing instructions**.
+- **evaluating expressions** rather than **executing instructions**.
 
 . . .
 
@@ -50,11 +50,11 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 . . .
 
-- Expressions never have “side effects” (like updating global variables or printing to the screen).
+- Expressions never have “side effects”
 
 . . .
 
-- Calling the same function with the same arguments results in the same output every time. Programs are deterministic.
+- Programs are deterministic.
 
 -----------------------------------------------------------------------------------
 
@@ -278,6 +278,17 @@ replicateConcurrent 3 (putStrLn "hello world")
 
 -------------------------------------------------------------------------------
 
+```haskell
+countCommonFriends :: UserID -> UserID -> Haxl Int
+
+countCommonFriends x y = do
+  fx <- friendsOf x
+  fy <- friendsOf y
+  return (length (intersect fx fy))
+```
+
+-------------------------------------------------------------------------------
+
 Immutable data structure?
 
 -------------------------------------------------------------------------------
@@ -321,16 +332,9 @@ At the end, it can even bring benefits!
 
 ### But... Why?
 
-- Equational reasoning and refactoring: In Haskell one can always “replace equals by equals”, just like you learned in algebra class.
-
-. . .
-
-- Parallelism: Evaluating expressions in parallel is easy when they are guaranteed not to affect one another.
-
-. . .
-
-- Fewer headaches: unrestricted effects and action-at-a-distance makes for programs that are hard to debug, maintain, and reason about.
-
+- Equational reasoning and refactoring
+- Parallelism
+- Fewer headaches
 
 -------------------------------------------------------------------------------
 
