@@ -160,17 +160,14 @@ Let's read the content of a file, and map each word to its length:
 
 . . .
 
+![](./shall-we.jpg)
+
+-------------------------------------------------------------------------------
+
+Let's read the content of a file, and map each word to its length:
+
 ```bash
 #!/bin/bash
-
-Input = "foo bar baz"
-```
-
-```bash
-Output = "3 3 3"
-```
-
-```bash
 $ echo "foo bar baz" | hsMap
 3 3 3
 ```
