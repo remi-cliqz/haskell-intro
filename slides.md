@@ -269,6 +269,8 @@ replicateConcurrent 3 (putStrLn "hello world")
 -------------------------------------------------------------------------------
 
 ```haskell
+{-# LANGUAGE ApplicativeDo #-}
+
 countCommonFriends :: UserID -> UserID -> Haxl Int
 
 countCommonFriends x y = do
