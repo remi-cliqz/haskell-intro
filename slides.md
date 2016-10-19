@@ -91,6 +91,8 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 ### Top haskell question ever...
 
+. . .
+
 ![](./loop.jpg)
 
 ------------------------------------------------------------------------------
