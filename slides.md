@@ -84,11 +84,12 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 42 :: Num t => t            -- Function with no argument!
 ```
 
+\url{https://www.haskell.org/hoogle/?hoogle=%5B%5D+-%3E+Int}
+
+
 --------------------------------------------------------------------------------------
 
 ### Top haskell question ever...
-
-Where is my `loop`?
 
 ![](./loop.jpg)
 
