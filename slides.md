@@ -66,8 +66,16 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 ![](./composition.png)
 
+. . .
+
 - Boxes are replaceable
+
+. . .
+
 - Split boxes as much as you want (a.k.a partial application)
+
+. . .
+
 - Polymorphic functions
 
 --------------------------------------------------------------------------------------
@@ -113,25 +121,7 @@ for (int i = 0; i < lst.length; i++) {
 ```haskell
 sum (map (3*) lst)
 ```
-
-------------------------------------------------------------------------------
-
-## Expressions, not Executions
-
-### Java
-```java
-int acc = 0;
-for (int i = 0; i < lst.length; i++) {
-  acc = acc + 3 * lst[i];
-}
-```
-
-
-### Haskell
-
-```haskell
-sum (map (3*) lst)
-```
+. . .
 
 they are *really* not some fancy function names
 ```haskell
@@ -332,8 +322,16 @@ At the end, it can even bring benefits!
 
 ### But... Why?
 
+. . .
+
 - Equational reasoning and refactoring
+
+. . .
+
 - Parallelism
+
+. . .
+
 - Fewer headaches
 
 -------------------------------------------------------------------------------
