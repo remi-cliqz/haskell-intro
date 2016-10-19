@@ -263,6 +263,16 @@ replicateConcurrent 3 (putStrLn "hello world")
 
 -------------------------------------------------------------------------------
 
+```haskell
+countCommonFriends :: UserID -> UserID -> Haxl Int
+
+countCommonFriends x y = do
+  fx <- friendsOf x
+  fy <- friendsOf y
+  return (length (intersect fx fy))
+```
+
+-------------------------------------------------------------------------------
 Immutable data structure?
 
 -------------------------------------------------------------------------------
