@@ -23,7 +23,7 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 # Haskell ecosystem
 
 - Glorious/Glasgow Haskell Compiler (*GHC*)
-- Stack: cli tool to: 
+- Stack: cli tool to:
     - Install GHC for you
     - Install packages
     - Build Haskell projects
@@ -40,11 +40,19 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 - *Functions* (mathematical, not procedures) are first-class, that is, functions are values which can be used in exactly the same ways as any other sort of value.
 
+. . .
+
 - The meaning of Haskell programs is centered around **evaluating expressions** rather than **executing instructions**.
+
+. . .
 
 - No mutation! Everything (variables, data structures…) is immutable.
 
+. . .
+
 - Expressions never have “side effects” (like updating global variables or printing to the screen).
+
+. . .
 
 - Calling the same function with the same arguments results in the same output every time. Programs are deterministic.
 
@@ -60,7 +68,7 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 
 - Boxes are replaceable
 - Split boxes as much as you want (a.k.a partial application)
-- Polymorphic functions 
+- Polymorphic functions
 
 --------------------------------------------------------------------------------------
 
@@ -76,11 +84,13 @@ is **purely functional** , **general purpose**, **lazily** evaluated programming
 42 :: Num t => t            -- Function with no argument!
 ```
 
-. . .
+--------------------------------------------------------------------------------------
 
 ### Top haskell question ever...
 
 Where is my `loop`?
+
+![](./loop.jpg)
 
 ------------------------------------------------------------------------------
 
@@ -89,7 +99,7 @@ Where is my `loop`?
 ### Java
 ```java
 int acc = 0;
-for ( int i = 0; i < lst.length; i++ ) {
+for (int i = 0; i < lst.length; i++) {
   acc = acc + 3 * lst[i];
 }
 ```
@@ -108,7 +118,7 @@ sum (map (3*) lst)
 ### Java
 ```java
 int acc = 0;
-for ( int i = 0; i < lst.length; i++ ) {
+for (int i = 0; i < lst.length; i++) {
   acc = acc + 3 * lst[i];
 }
 ```
@@ -123,10 +133,14 @@ sum (map (3*) lst)
 they are *really* not some fancy function names
 ```haskell
 sum [] = 0
-sum x:xs = x + sum xs
+sum (x:xs) = x + sum xs
 ```
 
 -------------------------------------------------------------------------------
+
+So, and my side-effects?
+
+. . .
 
 ![](./haskell-xkcd.png)
 
@@ -136,7 +150,8 @@ sum x:xs = x + sum xs
 Sure, we can have side effects...
 
 ```haskell
-main = putStrLn "Hello World"
+> main = putStrLn "Hello World"
+Hello World
 ```
 
 -------------------------------------------------------------------------------
@@ -298,12 +313,21 @@ At the end, it can even bring benefits!
 - Easier to understand (small functions, isolate IO)
 - Compiler can perform very aggressive optimizations (deforestation, fusion, etc.)
 
+. . .
+
+![](./benefits.jpg)
+
 -------------------------------------------------------------------------------
 
 ### But... Why?
 
 - Equational reasoning and refactoring: In Haskell one can always “replace equals by equals”, just like you learned in algebra class.
+
+. . .
+
 - Parallelism: Evaluating expressions in parallel is easy when they are guaranteed not to affect one another.
+
+. . .
 
 - Fewer headaches: unrestricted effects and action-at-a-distance makes for programs that are hard to debug, maintain, and reason about.
 
