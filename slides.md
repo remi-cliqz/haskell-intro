@@ -255,6 +255,14 @@ But with completly different semantics!
 
 -------------------------------------------------------------------------------
 
+# Which means we have cookies, a.k.a Composable, parallel safe IO
+
+```haskell
+replicateConcurrent 3 (putStrLn "hello world")
+```
+
+-------------------------------------------------------------------------------
+
 Immutable data structure?
 
 -------------------------------------------------------------------------------
@@ -289,6 +297,16 @@ At the end, it can even bring benefits!
 - Easy to test (property-based testing)
 - Easier to understand (small functions, isolate IO)
 - Compiler can perform very aggressive optimizations (deforestation, fusion, etc.)
+
+-------------------------------------------------------------------------------
+
+### But... Why?
+
+- Equational reasoning and refactoring: In Haskell one can always “replace equals by equals”, just like you learned in algebra class.
+- Parallelism: Evaluating expressions in parallel is easy when they are guaranteed not to affect one another.
+
+- Fewer headaches: unrestricted effects and action-at-a-distance makes for programs that are hard to debug, maintain, and reason about.
+
 
 -------------------------------------------------------------------------------
 
